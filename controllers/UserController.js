@@ -65,3 +65,19 @@ res.status(500).json({
 });
 }
 };
+
+// User Login
+
+export const login = async (req, res) => {
+  try {
+    // validating form fields
+
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        status: "400",
+        message: "Please Fill the Missing Fields",
+      });
+    }
+
