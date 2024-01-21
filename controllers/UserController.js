@@ -80,4 +80,16 @@ export const login = async (req, res) => {
         message: "Please Fill the Missing Fields",
       });
     }
+ //validating email
+
+ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+ if (!email.match(emailRegex)) {
+   res.status(400).json({
+     status: "400",
+     message: "Invalid Email Format",
+   });
+ }
+
+
 
