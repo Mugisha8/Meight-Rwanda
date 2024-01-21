@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import ApartmentRoutes from "./routers/ApartmentRoutes.js";
 import cors from "cors";
+import UserRoutes from "./routers/UserRoutes.js";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/meight", ApartmentRoutes);
+app.use("/meight", UserRoutes);
 
 // end of routings
 

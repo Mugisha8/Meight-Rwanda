@@ -3,6 +3,15 @@ import Apartments from "../models/apartmentsModal.js";
 // post apartment
 export const postApartment = async (req, res) => {
   try {
+    const existingName = await Apartments.findOne({ name: req.body.name });
+
+    if (existingName) {
+      res.status(400).json({
+        status:"400",
+        message: "Apartment name Already exists",
+      });
+    }
+
     const apartment = await Apartments.create(req.body);
     res
       .status(200)
@@ -14,7 +23,6 @@ export const postApartment = async (req, res) => {
 };
 
 //retrieve apartments
-
 export const getApartments = async (req, res) => {
   try {
     const apartment = await Apartments.find({});
