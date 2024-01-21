@@ -16,3 +16,13 @@ export const signUp = async (req, res) => {
         message: "Missing field",
       });
     }
+ //email validation
+
+ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+ if (!email.match(emailRegex)) {
+   res.status(400).json({
+     status: "400",
+     message: "Invalid Email",
+   });
+ }
