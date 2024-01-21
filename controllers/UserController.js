@@ -26,3 +26,19 @@ export const signUp = async (req, res) => {
      message: "Invalid Email",
    });
  }
+
+ if (password < 8) {
+  res.status(400).json({
+    status: "400",
+    message: "Password must be atleast 8 characters long",
+  });
+}
+
+const existingEmail = await Users.findOne({ email: req.body.email });
+
+if (existingEmail) {
+  res.status(400).json({
+    status: "400",
+    message: "Email Already Exists",
+  });
+}
