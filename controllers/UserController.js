@@ -91,5 +91,16 @@ export const login = async (req, res) => {
    });
  }
 
+   // check email Existence
+
+   const UserLogin = await Users.findOne({ email: req.body.email });
+
+   if (!UserLogin) {
+     return res.status(400).json({
+       status: "400",
+       message: "USER not Found",
+     });
+   }
+
 
 
