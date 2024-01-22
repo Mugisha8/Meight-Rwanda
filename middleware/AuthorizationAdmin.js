@@ -23,4 +23,9 @@ export const AuthorizeAdmin = async (req, res) => {
       const decoded = await Jwt.verify(token, process.env.JW_SECRET);
       const loggedUser = await Users.findById(decoded.id);
   
-     
+      if (!loggedUser) {
+        return res.status(401).json({
+          status: "401",
+          message: "Token Has expired, please login again",
+        });
+      }
