@@ -19,4 +19,8 @@ export const AuthorizeAdmin = async (req, res) => {
           message: "This operation Requires To login",
         });
       }
+      
+      const decoded = await Jwt.verify(token, process.env.JW_SECRET);
+      const loggedUser = await Users.findById(decoded.id);
   
+     
