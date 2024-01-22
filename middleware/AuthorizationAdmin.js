@@ -39,3 +39,12 @@ export const AuthorizeAdmin = async (req, res) => {
         req.log = loggedUser;
         next();
       }
+    
+    } catch (error) {
+        return res.status(500).json({
+          status: "500",
+          message: error.message,
+        });
+      }
+    };
+
