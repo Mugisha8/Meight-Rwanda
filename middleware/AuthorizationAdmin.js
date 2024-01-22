@@ -29,3 +29,13 @@ export const AuthorizeAdmin = async (req, res) => {
           message: "Token Has expired, please login again",
         });
       }
+
+      if (loggedUser.role !== "admin") {
+        return res.status(401).json({
+          status: "401",
+          message: "This Operation Requires Admin To login",
+        });
+      } else {
+        req.log = loggedUser;
+        next();
+      }
