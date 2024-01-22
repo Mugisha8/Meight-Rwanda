@@ -12,3 +12,11 @@ export const AuthorizeAdmin = async (req, res) => {
       ) {
         token = req.headers.authorization.split(" ")[1];
       }
+
+      if (!token) {
+        return res.status(401).json({
+          status: "401",
+          message: "This operation Requires To login",
+        });
+      }
+  
