@@ -168,6 +168,18 @@ export const DeleteUser = async (req, res) => {
         message: `Invalid User ID ${id}`,
       });
     }
+    res.status(200).json({
+      status: "200",
+      message: "User Deleted Successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "500",
+      message: error.message,
+    });
+  }
+};
+
 
 
 
