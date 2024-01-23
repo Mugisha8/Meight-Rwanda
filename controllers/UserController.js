@@ -54,5 +54,18 @@ export const signUp = async (req, res) => {
       role: "user",
     });
 
+    res.status(200).json({
+      status: "200",
+      message: "Account created Succesfully",
+      data: CreateAccount,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "500",
+      message: error.message,
+    });
+  }
+};
+
 
 
