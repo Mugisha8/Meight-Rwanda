@@ -137,5 +137,23 @@ export const login = async (req, res) => {
 };
 
 
+// fetch Users
+
+export const FetchUsers = async (req, res) => {
+  try {
+    const usersInfo = await Users.find({});
+    res.status(200).json({
+      status: "200",
+      Message: "User retrieved Sucessfully",
+      UserInfo: usersInfo,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "500",
+      message: error.message,
+    });
+  }
+};
+
 
 
