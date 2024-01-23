@@ -9,3 +9,9 @@ export const signUp = async (req, res) => {
     // validate Input fields
 
     const { firstname, lastname, email, password } = req.body;
+    if (!firstname || !lastname || !email || !password) {
+      res.status(400).json({
+        status: "400",
+        message: "Missing field",
+      });
+    }
