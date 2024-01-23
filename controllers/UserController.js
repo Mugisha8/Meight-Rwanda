@@ -155,5 +155,19 @@ export const FetchUsers = async (req, res) => {
   }
 };
 
+//delete user
+
+export const DeleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const removeUser = await Users.findByIdAndDelete(id);
+    if (!removeUser) {
+      res.status(400).json({
+        status: "400",
+        message: `Invalid User ID ${id}`,
+      });
+    }
+
 
 
