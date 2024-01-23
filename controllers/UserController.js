@@ -103,7 +103,17 @@ export const login = async (req, res) => {
         message: "USER not Found",
       });
     }
+ 
+    // check Password Match
 
+    const isMatch = await bcrypt.compare(password, UserLogin.password);
+
+    if (!isMatch) {
+      return res.status(400).json({
+        status: "400",
+        message: "Incorrect Password",
+      });
+    }
 
 
 
