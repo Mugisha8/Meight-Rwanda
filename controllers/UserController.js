@@ -115,5 +115,27 @@ export const login = async (req, res) => {
       });
     }
 
+    
+    // Initialize Token
+
+    const token = jwt.sign({ id: UserLogin._id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.EXPIRE_DATE,
+    });
+
+    return res.status(200).json({
+      status: "200",
+      message: "Logged In successfully",
+      Users: UserLogin,
+      Token: token,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "500",
+      message: error.message,
+    });
+  }
+};
+
+
 
 
