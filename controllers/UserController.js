@@ -26,3 +26,10 @@ export const signUp = async (req, res) => {
         message: "Invalid Email",
       });
     }
+
+    if (password < 8) {
+      res.status(400).json({
+        status: "400",
+        message: "Password must be atleast 8 characters long",
+      });
+    }
