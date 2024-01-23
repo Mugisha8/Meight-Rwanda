@@ -179,7 +179,33 @@ export const DeleteUser = async (req, res) => {
     });
   }
 };
+// update User
 
+export const UpdateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const editUser = await Users.findByIdAndUpdate(id, req.body);
+    if (!editUser) {
+      return res.status(400).json({
+        status: "400",
+        message: `Invalid Id ${id}`,
+      });
+    }
+
+    const AutoUpdate = await Users.findById(id);
+
+    res.status(200).json({
+      status: "200",
+      message: "User Updated",
+      Data: AutoUpdate,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "500",
+      message: error.message,
+    });
+  }
+};
 
 
 
