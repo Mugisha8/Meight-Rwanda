@@ -21,3 +21,10 @@ export const uploadToCloud = async (file, res) => {
       return apartmentImage;
     }
   
+    catch (error) {
+        return res.status(500).json({
+          status: "400",
+          message: error.message,
+        });
+      }
+    };
