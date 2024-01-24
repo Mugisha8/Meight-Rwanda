@@ -9,4 +9,15 @@ cloudinary.config({
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET,
   });
+
+  
+
+export const uploadToCloud = async (file, res) => {
+    try {
+      const apartmentImage = await cloudinary.uploader.upload(file.path, {
+        folder: "apartmentImages",
+        use_filename: true,
+      });
+      return apartmentImage;
+    }
   
