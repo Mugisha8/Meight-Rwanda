@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import ApartmentRoutes from "./routers/ApartmentRoutes.js";
 import cors from "cors";
 import UserRoutes from "./routers/UserRoutes.js";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 const app = express();
 
@@ -27,12 +29,48 @@ const PORT = process.env.PORT || 3000;
 
 // end of env config
 
+// start of Documentation
+
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Meight Rwanda - documentation",
+      version: "1.0.0",
+    },
+
+    servers: [
+      {
+        url: `localhost:8888/`,
+      },
+    ],
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+  },
+  apis: ["Docs/ApartmentsDoc.js", "Docs/UserDoc.js"], //  Determining documentation file
+};
+const swaggerSpec = swaggerJSDoc(options);
+
+// end of Documentation
+
 //routings
 
 app.get("/", (req, res) => {
   res.send("Welcome to Meight Rwanda");
 });
-
+app.use("/Documentation", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/meight", ApartmentRoutes);
 app.use("/meight", UserRoutes);
 

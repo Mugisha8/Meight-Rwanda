@@ -11,10 +11,12 @@ const apartmentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+
     price: {
       type: Number,
       required: true,
     },
+
     photo: {
       type: String,
       required: true,
