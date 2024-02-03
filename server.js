@@ -41,7 +41,7 @@ const options = {
 
     servers: [
       {
-        url: `localhost:8888/`,
+        url: `https://apartments-api-9pl0.onrender.com/`,
       },
     ],
     security: [
